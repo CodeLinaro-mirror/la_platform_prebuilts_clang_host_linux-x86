@@ -14,33 +14,13 @@
 // limitations under the License.
 //
 
-clang_version = "3859424"
-clang_libfuzzer_dir = "clang-" + clang_version + "/lib64/clang/4.0/lib/linux/"
-
-cc_prebuilt_library_static {
+libfuzzer_prebuilt_library_static {
     name: "libFuzzer",
-    export_include_dirs: ["clang-" + clang_version + "/prebuilt_include/llvm/lib/Fuzzer/"],
-    target: {
-        android_arm: {
-            srcs: [clang_libfuzzer_dir + "arm/libFuzzer.a"],
-        },
-        android_arm64: {
-            srcs: [clang_libfuzzer_dir + "aarch64/libFuzzer.a"],
-        },
-        android_mips: {
-            srcs: [clang_libfuzzer_dir + "mips/libFuzzer.a"],
-        },
-        android_mips64: {
-            srcs: [clang_libfuzzer_dir + "mips64/libFuzzer.a"],
-        },
-        android_x86: {
-            srcs: [clang_libfuzzer_dir + "i386/libFuzzer.a"],
-        },
-        android_x86_64: {
-            srcs: [clang_libfuzzer_dir + "x86_64/libFuzzer.a"],
-        },
-    },
     sanitize: {
         never: true,
     },
 }
+
+subdirs = [
+    "soong",
+]
